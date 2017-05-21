@@ -1,8 +1,6 @@
 # SVG Loading Animation
 SVG based customizable loading animation.
 
-![Loading gif](/demo-loading.gif?raw=true)
-![Loading sample](/demo-sample.png?raw=true)
 
 ## Usage
 ### HTML
@@ -64,6 +62,9 @@ var loading = initializeLoading('.my-class', { scale: 'x2' });
 ```
 
 ## About
-This library is made using [segnemt](https://lmgonzalves.github.io/segment/) and [classie](https://github.com/desandro/classie). Feel free to use the source code as an example or in any project of your own. 
+This library is made using [segment](https://lmgonzalves.github.io/segment/) and [classie](https://github.com/desandro/classie). Feel free to use the source code as an example or in any project of your own. 
 Found a bug? or an enhancement idea?  Let's _git_ on it.
 Inspired by [lmgonzalves](https://x-team.com/blog/creating-loading-buttons-svg-segment/).
+
+![Loading gif](/demo-loading.gif?raw=true)
+![Loading sample](/demo-sample.png?raw=true)
