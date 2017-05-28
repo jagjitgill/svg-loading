@@ -13,7 +13,8 @@
     transform: translateX(-50%);
     height: 120px;
 }
-.loading-element.open-loading.infinity-loading svg {
+.loading-element.open-loading.infinity-loading svg,
+.loading-element.open-loading.pulse-loading svg {
     height: 60px;
 }
 .loading-element svg {
@@ -34,10 +35,14 @@
     stroke-width: 4;
     fill: none;
 }
+a.loading-element svg path, button.loading-element svg path {
+    stroke-width: 6;
+}
 .loading-element svg path.success-path, .loading-element svg path.error-path, 
 .loading-element svg path.error-path2 {
     visibility: hidden;
 }
+
 /* Animation Colors */
 button.loading-element svg path.color,
 .btn-primary.loading-element svg path.color {
@@ -119,17 +124,22 @@ div.loading-element svg path.color2 {
     padding-bottom: 140px;
 }
 
-.loading-element.open-loading.infinity {
+.loading-element.open-loading.infinity,
+.loading-element.open-loading.pulse {
     padding-top: 80px; 
 }
-.loading-element.open-loading.infinity-loading.top {
+.loading-element.open-loading.infinity-loading.top,
+.loading-element.open-loading.pulse-loading.top {
     padding-top: 80px; 
 }
-.loading-element.open-loading.infinity-loading.bottom {
+.loading-element.open-loading.infinity-loading.bottom,
+.loading-element.open-loading.pulse-loading.bottom {
     padding-bottom: 80px; 
 }
 .loading-element.infinity-loading.right svg,
-.loading-element.infinity-loading.left svg {
+.loading-element.infinity-loading.left svg, 
+.loading-element.pulse-loading.right svg,
+.loading-element.pulse-loading.left svg {
     top: 50%;
 }
 /* Inline animation scaling */
@@ -168,7 +178,8 @@ div.loading-element svg path.color2 {
 
 button.circular-loading.failed, a.circular-loading.failed,
 button.circle-loading.failed, a.circle-loading.failed,
-button.infinity-loading.failed, a.infinity-loading.failed {
+button.infinity-loading.failed, a.infinity-loading.failed,
+button.pulse-loading.failed, a.pulse-loading.failed {
     background-color: #EB7260;
     color: #fff;
     border-color: #EB7260;
@@ -177,7 +188,8 @@ button.infinity-loading.failed, a.infinity-loading.failed {
 }
 button.circular-loading.succeed, a.circular-loading.succeed,
 button.circle-loading.succeed, a.circle-loading.succeed,
-button.infinity-loading.succeed, a.infinity-loading.succeed {
+button.infinity-loading.succeed, a.infinity-loading.succeed,
+button.pulse-loading.succeed, a.pulse-loading.succeed {
     background-color: #29ABA4;
     border-color: #29ABA4;
     transition: all 0.25s ease-in;

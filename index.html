@@ -112,6 +112,7 @@
                 <div class="col-xs-12">
                     <p class="demo-inline-p"></p>
                     <div class="demo-div"></div>
+                    <div class="demo-pulse-div">Maano</div>
                     <!-- <p>
                         <b>Tested in: </b><u>IE 10</u>, <u>IE 11</u>, <u>Edge 38</u>, FireFox 52, Chrome 57 - (Windows)<br />
                     </p> -->
@@ -177,6 +178,14 @@
                 <path class="error-path2 color" d="M 30 10 Q 40 10 45 15 L 75 45"></path>
             </svg>
         </script>
+        <script type="text/template" id="pulse-loading">
+            <svg width="120px" height="60px" id="pulse">
+                <path class="pulse-path color" d="M0.75,18.268l28.763,0l4.818,-7.311l3.682,13.764l9.716,-23.971l8.64,44.311l5.026,-32.944l6.067,13.589l3.723,-8.219l24.341,0" />
+                <path class="success-path color" d="M 30 10 C 15 10 35 25 45 35 L 55 45 L 75 15"></path>
+                <path class="error-path color" d="M 30 10 a 20 20 0 1 0 0 40 Q 40 50 45 45 L 75 15"></path>
+                <path class="error-path2 color" d="M 30 10 Q 40 10 45 15 L 75 45"></path>
+            </svg>
+        </script>
         <script type="text/javascript">
             (function(){
                 var circular1 = initializeLoading('.demo-circular1');
@@ -191,6 +200,7 @@
 
                 var inlineCircular = initializeLoading('.demo-inline-p', { type: 'circular', position: 'inline', scale: 'x1' });
                 var divLoading = initializeLoading('.demo-div');
+                var divPulseLoading = initializeLoading('.demo-pulse-div', { type: "pulse", scale: "x2" } );
             
                 setTimeout(function(){
 
@@ -203,6 +213,8 @@
             
                     infinity1.triggerSuccess();
                     infinity2.triggerFail();
+
+                    // divPulseLoading.triggerSuccess();
 
                 }, 2500);
             })();

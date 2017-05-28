@@ -48,7 +48,7 @@ var loading = initializeLoading('.my-class', { position: 'bottom' });
 ```
 
 **Type**
-Choose one from 3 available types: `circular`, `circle` and `infinity`. The default value is 'circular'.
+Choose one from 3 available types: `circular`, `circle`, `infinity` and `pulse`. The default value is 'circular'.
 
 ```javascript
 var loading = initializeLoading('.my-class', { type: 'circle' });
