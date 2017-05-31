@@ -1,6 +1,6 @@
 # SVG Loading Animation
 SVG based customizable loading animation.
-
+[View Demo](http://jagjitgill.ca/code/svg-loading/)
 
 ## Usage
 ### HTML
