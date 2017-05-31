@@ -67,4 +67,3 @@ Found a bug? or an enhancement idea?  Let's _git_ on it.
 Inspired by [lmgonzalves](https://x-team.com/blog/creating-loading-buttons-svg-segment/).
 
 ![Loading gif](/demo-loading.gif?raw=true)
-![Loading sample](/demo-sample.png?raw=true)
