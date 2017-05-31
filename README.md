@@ -66,4 +66,4 @@ This library is made using [segment](https://lmgonzalves.github.io/segment/) and
 Found a bug? or an enhancement idea?  Let's _git_ on it.
 Inspired by [lmgonzalves](https://x-team.com/blog/creating-loading-buttons-svg-segment/).
 
-![Loading gif](/demo-loading.gif?raw=true)
+![Loading gif](/demo-svg-loading.gif?raw=true)
