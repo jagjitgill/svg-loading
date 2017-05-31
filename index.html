@@ -111,6 +111,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <p class="demo-inline-p"></p>
+                    <div class="demo-div"></div>
                     <!-- <p>
                         <b>Tested in: </b><u>IE 10</u>, <u>IE 11</u>, <u>Edge 38</u>, FireFox 52, Chrome 57 - (Windows)<br />
                     </p> -->
@@ -188,9 +189,8 @@
                 var infinity1 = initializeLoading('.demo-infinity1', { type: 'infinity' });
                 var infinity2 = initializeLoading('.demo-infinity2', { type: 'infinity' });
 
-
                 var inlineCircular = initializeLoading('.demo-inline-p', { type: 'circular', position: 'inline', scale: 'x1' });
-
+                var divLoading = initializeLoading('.demo-div');
             
                 setTimeout(function(){
 
@@ -203,7 +203,7 @@
             
                     infinity1.triggerSuccess();
                     infinity2.triggerFail();
-            
+
                 }, 2500);
             })();
         </script>

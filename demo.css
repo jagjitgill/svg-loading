@@ -74,11 +74,18 @@ p,
     text-align: left;
     min-height: 35px;
 }
-.demo-inline-p {
+.demo-inline-p, .demo-div {
     border: 1px solid #eee;
 }
 .demo-inline-p::before {
     content: '<p>';
+    position: relative;
+    left: 10px;
+    color: #dcd8d8;
+    font-style: italic;
+}
+.demo-div::before {
+    content: '<div>';
     position: relative;
     left: 10px;
     color: #dcd8d8;

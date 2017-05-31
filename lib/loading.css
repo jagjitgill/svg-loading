@@ -53,7 +53,14 @@ button.loading-element svg path.color2,
 .btn-primary.loading-element svg path.color2 {
     stroke: rgba(0, 138, 204, 0.80);
 }
-
+.loading-element circle.color2 {
+    stroke: #ffffff;
+    stroke-width: 0.5;
+}
+.loading-element.failed circle.color2,
+.loading-element.succeed circle.color2 {
+    stroke: transparent;
+}
 p.loading-element svg path.color2,
 span.loading-element svg path.color2,
 div.loading-element svg path.color2 {
