@@ -3,16 +3,15 @@ SVG based customizable loading animation.
 [View demo](http://jagjitgill.ca/code/svg-loading/)
 
 ## Install
-Download zip from [GitHub repo][svg-loading] or install via bower , a [client-side code package manager][bower].
+Download zip from the [GitHub repo][svg-loading] or install via bower, a [client-side code package manager][bower].
 ```bash
 bower install https://github.com/jagjitgill/svg-loading.git#master
 ```
 
 Include the required css and the js files:
 ```html
-// CSS - svg-loading
-<style href="bower_components/svg-loading/lib/loading.css" rel="stylesheet"></style>
-// JS files - svg-loading
+<link href="bower_components/svg-loading/lib/loading.css" rel="stylesheet"></link>
+
 <script src="bower_components/svg-loading/lib/segment.js"></script>
 <script src="bower_components/svg-loading/lib/loading-button.js"></script>
 ```
