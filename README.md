@@ -1,14 +1,22 @@
 # SVG Loading Animation
 SVG based customizable loading animation.
-[View Demo](http://jagjitgill.ca/code/svg-loading/)
+[View demo](http://jagjitgill.ca/code/svg-loading/)
 
-## Usage
-### HTML
-No special markup is required to add the animation. 
-```html
-<button class="my-class">Submit</button>
-<a class="my-class">Submit</a>
+## Install
+Download zip from [GitHub repo][svg-loading] or install via bower , a [client-side code package manager][bower].
+```bash
+bower install https://github.com/jagjitgill/svg-loading.git#master
 ```
+
+Include the required css and the js files:
+```html
+// CSS - svg-loading
+<style href="bower_components/svg-loading/lib/loading.css" rel="stylesheet"></style>
+// JS files - svg-loading
+<script src="bower_components/svg-loading/lib/segment.js"></script>
+<script src="bower_components/svg-loading/lib/loading-button.js"></script>
+```
+
 ### JS
 By default the `<button>` and `<a>` will start the animation on click. All the other containers (`<p>`, `<div>` etc.) will start the animation upon initialization.
 ```js
@@ -67,3 +75,6 @@ Found a bug? or an enhancement idea?  Let's _git_ on it.
 Inspired by [lmgonzalves](https://x-team.com/blog/creating-loading-buttons-svg-segment/).
 
 ![Loading gif](/demo-svg-loading.gif?raw=true)
+
+[svg-loading]: https://github.com/jagjitgill/svg-loading
+[bower]: http://bower.io/
