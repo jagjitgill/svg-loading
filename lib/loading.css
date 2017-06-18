@@ -41,7 +41,7 @@
 /* Animation Colors */
 button.loading-element svg path.color,
 a.loading-element svg path.color {
-    stroke: #fff;
+    stroke: #008ACC;
 }
 p.loading-element svg path.color,
 span.loading-element svg path.color,
