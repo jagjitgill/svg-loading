@@ -48,6 +48,7 @@ LoadingButton.prototype = {
     init: function() {
         this.infinite = true;
         this.succeed = false;
+        this.lstate = 'default';
         this.initDOM();
         this.initSegments();
         this.initEvents();
@@ -97,6 +98,7 @@ LoadingButton.prototype = {
 
     startAnimation: function() {
         var self = this;
+        this.lstate = 'loading';
         this.defaultText = self.span.innerHTML;
         if (self.el.getAttribute("data-progress")) {
             self.buttonText = self.el.getAttribute("data-progress");
@@ -191,6 +193,7 @@ LoadingButton.prototype = {
 
         self.successSegment.draw('100% - 50', '100%', 0.4, {
             callback: function() {
+                self.lstate = 'success';
                 if (typeof(self.successText) !== 'undefined') {
                     self.span.innerHTML = self.successText;
                 }
@@ -215,6 +218,7 @@ LoadingButton.prototype = {
         self.errorSegment.draw('100% - 42.5', '100%', 0.4);
         self.errorSegment2.draw('100% - 42.5', '100%', 0.4, {
             callback: function() {
+                self.lstate = 'failed';
                 if (typeof(self.errorText) !== 'undefined') {
                     self.span.innerHTML = self.errorText;
                 }
@@ -230,6 +234,7 @@ LoadingButton.prototype = {
     reset: function() {
         this.el.removeAttribute('disabled');
         removeClass(this.el, 'open-loading');
+        this.lstate = 'default';
         if (this.defaultText) {
             this.resetText = this.defaultText;
         }
