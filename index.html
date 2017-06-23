@@ -73,7 +73,6 @@
                 bottom: 0;
                 width: 100%;
             }
-
         </style>
     </head>
     <body class="button-demo">
@@ -250,19 +249,18 @@
                         $(".stop-all-1").click(function(e){
                             e.preventDefault();
                             if (loadingStop == 'success') {
-                                circularRight.triggerSuccess();
-                                circleRight.triggerSuccess();
-                                infinityRight.triggerSuccess();
+                                if(circularRight.lstate != 'default'){ circularRight.triggerSuccess(); }
+                                if(circleRight.lstate != 'default'){ circleRight.triggerSuccess(); }
+                                if(infinityRight.lstate != 'default'){ infinityRight.triggerSuccess(); }
                             }else if (loadingStop == 'fail') {
-                                circularRight.triggerFail();
-                                circleRight.triggerFail();
-                                infinityRight.triggerFail();
+                                if(circularRight.lstate != 'default'){ circularRight.triggerFail(); }
+                                if(circleRight.lstate != 'default'){ circleRight.triggerFail(); }
+                                if(infinityRight.lstate != 'default'){ infinityRight.triggerFail(); }
                             }else{
-                                circularRight.triggerSilentSuccess();
-                                circleRight.triggerSilentSuccess();
-                                infinityRight.triggerSilentSuccess();
+                                if(circularRight.lstate != 'default'){ circularRight.triggerSilentSuccess(); }
+                                if(circleRight.lstate != 'default'){ circleRight.triggerSilentSuccess(); }
+                                if(infinityRight.lstate != 'default'){ infinityRight.triggerSilentSuccess(); }
                             }
-                            
                         });
                     }
 
