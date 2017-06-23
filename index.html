@@ -9,11 +9,14 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 
-        <link rel="stylesheet" type="text/css" href="lib/loading.css" />
+        <link rel="stylesheet" type="text/css" href="dist/loading.css" />
         <!-- JS -->
-        <script src="lib/segment.min.js"></script>
-        <script src="lib/loading-button.min.js"></script>
+        <script src="dist/segment.min.js"></script>
+        <script src="dist/loading-button.min.js"></script>
         <style type="text/css"> 
+            #demo {
+                padding-bottom: 5em;
+            }
             #demo h1 {
                 font-size: 3rem;
             }
@@ -65,6 +68,11 @@
                 background-color: #26a69a !important;
                 color: #fff !important;
             }
+            .footer-copyright {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
 
         </style>
     </head>
@@ -72,11 +80,11 @@
         <nav class="light-blue lighten-1" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">SVG Loading</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="https://github.com/jagjitgill/svg-loading#readme">Docs</a></li>
+                    <li><a href="https://github.com/jagjitgill/svg-loading#readme">GitHub Docs</a></li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
-                    <li><a href="https://github.com/jagjitgill/svg-loading#readme">Docs</a></li>
+                    <li><a href="https://github.com/jagjitgill/svg-loading#readme">GitHub Docs</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
@@ -102,7 +110,7 @@
             </div>
             <br><br>
             <div class="row">
-                <div class="col s12 m12 l12 demo-row center-align">
+                <div class="col s12 m6 l6 demo-row center-align">
                     <strong>Animation Position</strong><br>
                     <p>
                         <input name="position" type="radio" value="left" id="position-left" />
@@ -117,14 +125,59 @@
                         <input name="position" type="radio" value="bottom" id="position-bottom" />
                         <label for="position-bottom">Bottom</label>
                     </p>
+                </div>
+            <!-- Final action, success/fail -->
+                <div class="col s12 m6 l6 demo-row center-align">
+                    <strong>Stop with</strong><br>
                     <p>
-                    <a class="orange-text" href="https://github.com/jagjitgill/svg-loading" target="_blank"><u>View on GitHub</u></a>
-                        
+                        <input name="stopAction" type="radio" value="success" id="stop-action-left" checked />
+                        <label for="stop-action-left">Success</label>
+
+                        <input name="stopAction" type="radio" value="fail" id="stop-action-right" />
+                        <label for="stop-action-right">Fail</label>
+
+                        <input name="stopAction" type="radio" value="silent" id="stop-action-top" />
+                        <label for="stop-action-top">Silently</label>
                     </p>
                 </div>
             </div>
-            <br><br><br><br>
+            <br><br>
+            <div class="row">
+                <p class="center">
+                    <a class="orange-text" href="https://github.com/jagjitgill/svg-loading" target="_blank"><u>View on GitHub</u></a>
+                </p>
+            </div>
         </div>
+        <footer class="page-footer white">
+            <div class="container">
+                <div class="row">
+                    <div class="col l8 m8 s12 white-text footer-container-1 hide-on-med-and-down hide-on-med-and-up">
+                        <div itemscope="" itemtype="http://data-vocabulary.org/Person">
+                            <strong>Bio:</strong>&nbsp; My name is <span itemprop="name">Jagjit Gill</span>.<br>
+                            I work as a <span itemprop="title">Web Developer</span> in
+                            <span itemprop="address" itemscope="" itemtype="http://data-vocabulary.org/Address">
+                                <span itemprop="locality">Waterloo</span>, 
+                                <span itemprop="region">ON</span> 
+                                <span itemprop="country-name">Canada</span>.
+                            </span><br>
+                            Website: <a class="white-text" href="http://www.jagjitgill.ca" itemprop="url">www.jagjitgill.ca</a>
+                            <a href="/static/img/Jagjit-Gill-3.jpg" alt="Jagjit Gill" itemprop="photo"></a>
+                            <a href="/static/img/Jagjit-Gill.jpg" alt="Jagjit Singh Gill" itemprop="photo"></a>
+                            <a rel="author" href="/static/img/Jagjit-Gill-2.jpg" alt="Jagjit Gill" itemprop="photo"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 center grey-text">
+                            Demo page made by <a rel="author" href="https://www.google.com/+JagjitGill007" target="_blank" title="Google+" class="grey-text">Jagjit Gill</a> using Material Design.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
         <script type="text/template" id="circular-loading">
             <svg width="120px" height="120px">
                 <path class="outer-path color" d="M 60 60 m 0 -50 a 50 50 0 1 1 0 100 a 50 50 0 1 1 0 -100"></path>
@@ -160,12 +213,15 @@
                 $(function(){
                     $('.button-collapse').sideNav();
                     var loadingPosition = 'right';
+                    var loadingStop = 'success';
                     var circularRight, circleRight, infinityRight;
                     initLoading();
                     $("input[type=radio][name=position]").change(function(e){
-                        console.log("Changed "+this.value);
                         loadingPosition = this.value;
                         resetLoading();
+                    });
+                    $("input[type=radio][name=stopAction]").change(function(e){
+                        loadingStop = this.value;
                     });
 
                     function initLoading(){
@@ -175,9 +231,20 @@
 
                         $(".stop-all-1").click(function(e){
                             e.preventDefault();
-                            circularRight.triggerSuccess();
-                            circleRight.triggerFail();
-                            infinityRight.triggerSuccess();
+                            if (loadingStop == 'success') {
+                                circularRight.triggerSuccess();
+                                circleRight.triggerSuccess();
+                                infinityRight.triggerSuccess();
+                            }else if (loadingStop == 'fail') {
+                                circularRight.triggerFail();
+                                circleRight.triggerFail();
+                                infinityRight.triggerFail();
+                            }else{
+                                circularRight.triggerSilentSuccess();
+                                circleRight.triggerSilentSuccess();
+                                infinityRight.triggerSilentSuccess();
+                            }
+                            
                         });
                     }
 
@@ -191,7 +258,6 @@
                                     removeClass(b, p);
                                 }
                             });
-                            console.log("Addd class "+ loadingPosition);
                             addClass(b, loadingPosition);
                         });
                     }

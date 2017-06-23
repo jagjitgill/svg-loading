@@ -10,10 +10,10 @@ bower install https://github.com/jagjitgill/svg-loading.git#master
 
 Include the required css and the js files:
 ```html
-<link href="bower_components/svg-loading/lib/loading.css" rel="stylesheet"></link>
+<link href="bower_components/svg-loading/dist/loading.css" rel="stylesheet"></link>
 
-<script src="bower_components/svg-loading/lib/segment.min.js"></script>
-<script src="bower_components/svg-loading/lib/loading-button.min.js"></script>
+<script src="bower_components/svg-loading/dist/segment.min.js"></script>
+<script src="bower_components/svg-loading/dist/loading-button.min.js"></script>
 ```
 
 ### JS
