@@ -12,8 +12,8 @@ Include the required css and the js files:
 ```html
 <link href="bower_components/svg-loading/lib/loading.css" rel="stylesheet"></link>
 
-<script src="bower_components/svg-loading/lib/segment.js"></script>
-<script src="bower_components/svg-loading/lib/loading-button.js"></script>
+<script src="bower_components/svg-loading/lib/segment.min.js"></script>
+<script src="bower_components/svg-loading/lib/loading-button.min.js"></script>
 ```
 
 ### JS
