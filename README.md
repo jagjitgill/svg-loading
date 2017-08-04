@@ -5,7 +5,8 @@ SVG based customizable loading animation.
 ## Install
 Download zip from the [GitHub repo][svg-loading] or install via bower, a [client-side code package manager][bower].
 ```bash
-bower install https://github.com/jagjitgill/svg-loading.git#master
+bower install svg-loading
+# bower install https://github.com/jagjitgill/svg-loading.git#master
 ```
 
 Include the required css and the js files:
@@ -20,13 +21,15 @@ Include the required css and the js files:
 By default the `<button>` and `<a>` will start the animation on click. All the other containers (`<p>`, `<div>` etc.) will start the animation upon initialization.
 Initialize the animation:
 ```js
-// Initialize
-var circularLoading = initializeLoading('.my-class');
+$(function(){
+    // Initialize
+    var circularLoading = initializeLoading('.my-class');
 
-// Stop animation
-circularLoading.triggerSuccess();           // Stop with tick mark
-circularLoading.triggerFail();              // Stop with "x"
-circularLoading.triggerSilentSuccess();     // Fade away
+    // Stop animation
+    circularLoading.triggerSuccess();           // Stop with tick mark
+    circularLoading.triggerFail();              // Stop with "x"
+    circularLoading.triggerSilentSuccess();     // Fade away
+});
 ```
 ### Options
 #### Status text
