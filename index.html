@@ -12,7 +12,9 @@
         <link rel="stylesheet" type="text/css" href="dist/svg-loading.min.css" />
         <!-- JS -->
         <script src="dist/segment.min.js"></script>
-        <script src="dist/svg-loading.min.js"></script>
+        <!-- <script src="dist/svg-loading.min.js"></script> -->
+        <script src="dist/svg-loading.js"></script>
+
         <style type="text/css"> 
             #demo {
                 padding-bottom: 5em;
@@ -157,6 +159,18 @@
                         <label for="stop-action-top">Silently</label>
                     </p>
                 </div>
+            </div>
+            <br>
+            <div class="row">
+                <button href="#" class="btn btn-large demo-button circular-demo-1 waves-effect waves-light"
+                    data-progress="Sending"
+                    data-success="Done!"
+                    data-fail="Error!"
+                    data-reset="Try again">
+                    Circular
+                </button>
+                <br>
+                <p class="inline-loader" style="background: #eee;">Loading</p>
             </div>
             <br><br>
             <div class="row">

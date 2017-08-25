@@ -50,6 +50,7 @@ LoadingButton.prototype = {
         this.infinite = true;
         this.succeed = false;
         this.lstate = 'default';
+        this.destroyed = false;
         this.initDOM();
         this.initSegments();
         this.initEvents();
@@ -63,6 +64,14 @@ LoadingButton.prototype = {
         div.innerHTML = getAnimationMarkup(this.options.svg);
         this.svg = div.querySelector('svg');
         this.el.appendChild(this.svg);
+    },
+    destroy: function() {
+        this.span = this.el.querySelector('span');
+        this.el.innerHTML = this.span.innerHTML;
+        removeClass(this.el, 'open-loading');
+        removeClass(this.el, 'loading-element');
+        this.destroyed = true;
+        this.el.removeAttribute('disabled');
     },
 
     // Initialize the segments for all the paths of the loader itself, and for the success and error animations
@@ -83,11 +92,19 @@ LoadingButton.prototype = {
 
     // Initialize the click event in loading buttons, that trigger the animation
     initEvents: function() {
+        if(this.destroyed){
+            return;
+        }
+        console.log("Executing events");
         var self = this;
         addClass(self.el, 'loading-element');
         if (self.el.tagName == "A" || self.el.tagName == "BUTTON") {
             // Starting load on click for buttons and links
             self.el.addEventListener('click', function() {
+                if(self.destroyed){
+                    return;
+                }
+                console.log("Executing click");
                 self.el.disabled = 'disabled';
                 self.startAnimation();
             }, false);
@@ -98,6 +115,10 @@ LoadingButton.prototype = {
     },
 
     startAnimation: function() {
+        if(this.destroyed){
+            return;
+        }
+        console.log("Executing startAnimation");
         var self = this;
         this.lstate = 'loading';
         this.defaultText = self.span.innerHTML;
