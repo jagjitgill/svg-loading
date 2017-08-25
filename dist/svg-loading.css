@@ -135,13 +135,17 @@ div.loading-element svg path.color2 {
 .loading-element.open-loading.pulse {
     padding-top: 80px; 
 }
-.loading-element.open-loading.infinity-loading.top,
-.loading-element.open-loading.pulse-loading.top {
+.loading-element.open-loading.infinity-loading.top {
     padding-top: 80px; 
 }
-.loading-element.open-loading.infinity-loading.bottom,
-.loading-element.open-loading.pulse-loading.bottom {
+.loading-element.open-loading.pulse-loading.top {
+    padding-top: 60px; 
+}
+.loading-element.open-loading.infinity-loading.bottom {
     padding-bottom: 80px; 
+}
+.loading-element.open-loading.pulse-loading.bottom {
+    padding-bottom: 60px; 
 }
 .loading-element.infinity-loading.right svg,
 .loading-element.infinity-loading.left svg, 

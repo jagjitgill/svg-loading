@@ -410,7 +410,7 @@ function infinityLoading(cssSelector) {
 function pulseLoading(cssSelector) {
     var button = document.querySelector(cssSelector),
         options = {
-            svg: '#pulse-loading',
+            svg: 'pulse',
             paths: [{
                 selector: '.pulse-path',
                 animation: pulseAnimation
@@ -494,6 +494,7 @@ function getAnimationMarkup(type) {
     svgMarkup['circular'] = '<svg width="120px" height="120px"> <path class="outer-path color" d="M 60 60 m 0 -50 a 50 50 0 1 1 0 100 a 50 50 0 1 1 0 -100"></path> <path class="inner-path color2" d="M 60 60 m 0 -30 a 30 30 0 1 1 0 60 a 30 30 0 1 1 0 -60"></path> <path class="success-path color" d="M 60 10 A 50 50 0 0 1 91 21 L 75 45 L 55 75 L 45 65"></path> <path class="error-path color" d="M 60 10 A 50 50 0 0 1 95 25 L 45 75"></path> <path class="error-path2 color" d="M 60 30 A 30 30 0 0 1 81 81 L 45 45"></path> </svg>';
     svgMarkup['circle'] = '<svg width="120px" height="120px"> <circle r="50" cx="60" cy="60" fill="none" class="color2"></circle> <circle r="30" cx="60" cy="60" fill="none" class="color2"></circle> <path class="outer-path color" d="M 60 60 m 0 -50 a 50 50 0 1 1 0 100 a 50 50 0 1 1 0 -100"></path> <path class="inner-path color" d="M 60 60 m 0 -30 a 30 30 0 1 1 0 60 a 30 30 0 1 1 0 -60"></path> <path class="success-path color" d="M 60 10 A 50 50 0 0 0 16 36  L 45 65 L 55 75 L 75 45"></path> <path class="error-path color" d="M 60 10 A 50 50 0 0 0 25 95 L 75 45"></path> <path class="error-path2 color" d="M 60 30 A 30 30 0 0 1 81 81 L 45 45"></path> </svg>';
     svgMarkup['infinity'] = '<svg width="120px" height="60px"><path class="infinity-path color" d="M 30 10 a 20 20 0 1 0 0 40 c 20 0 40 -40 60 -40 a 20 20 0 0 1 0 40 c -20 0 -40 -40 -60 -40"></path><path class="success-path color" d="M 30 10 C 15 10 35 25 45 35 L 55 45 L 75 15"></path><path class="error-path color" d="M 30 10 a 20 20 0 1 0 0 40 Q 40 50 45 45 L 75 15"></path><path class="error-path2 color" d="M 30 10 Q 40 10 45 15 L 75 45"></path></svg>';
+    svgMarkup['pulse'] = '<svg width="120px" height="60px"><path class="pulse-path color" d="M0.75,18.268l28.763,0l4.818,-7.311l3.682,13.764l9.716,-23.971l8.64,44.311l5.026,-32.944l6.067,13.589l3.723,-8.219l24.341,0" /><path class="success-path color" d="M 30 10 C 15 10 35 25 45 35 L 55 45 L 75 15"></path><path class="error-path color" d="M 30 10 a 20 20 0 1 0 0 40 Q 40 50 45 45 L 75 15"></path><path class="error-path2 color" d="M 30 10 Q 40 10 45 15 L 75 45"></path></svg>';
 
     if (svgMarkup[loadingType]) {
         return svgMarkup[loadingType];
