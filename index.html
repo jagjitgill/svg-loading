@@ -6,218 +6,269 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>SVG Loading Animation</title>
         <!-- CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <!-- For Demo -->
-        <link rel="stylesheet" type="text/css" href="lib/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="lib/loading.css" />
-        <link rel="stylesheet" type="text/css" href="demo.css" />
-        <!-- JS -->
-        <script src="lib/segment.js"></script>
-        <script src="lib/loading-button.js"></script>
-        <!-- These 3 js files can be combined into one for deployment -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 
+        <!-- <link rel="stylesheet" type="text/css" href="dist/svg-loading.min.css" /> -->
+        <link rel="stylesheet" type="text/css" href="dist/svg-loading.css" />
+        
+        <!-- JS -->
+        <script src="dist/segment.min.js"></script>
+        <!-- <script src="dist/svg-loading.min.js"></script> -->
+        <script src="dist/svg-loading.js"></script>
+        <style type="text/css"> 
+            #demo {
+                padding-bottom: 5em;
+            }
+            #demo h1 {
+                font-size: 3rem;
+            }
+            #demo .right, #demo .left {
+                float: none !important;
+            }
+            #demo .demo-row button { 
+                min-width: 180px;
+                margin-bottom: 15px;
+            }
+            
+            button.demo-button.loading-element svg path.color,
+            button.demo-button.loading-element svg path.color2 {
+                stroke: #ffffff;
+            }
+            /*  ADD TO LIB      TODO     */
+            .demo-button.loading-element circle.color2 {
+                stroke: #ffffff;
+                stroke-width: 0.5;
+            }
+            .demo-button.loading-element.failed circle.color2 {stroke: transparent;}
+            button.demo-button.circular-loading.succeed, button.demo-button.circle-loading.succeed, button.demo-button.infinity-loading.succeed {
+                color: #fff;
+                transition: all 0.25s ease-in;
+                transition: all 0.25s ease-in;
+            }
+            button.demo-button.succeed svg path.color, button.demo-button.failed svg path.color {
+                transition: all 0.25s ease-in;
+                transition: all 0.25s ease-in;
+                stroke: #fff;
+            }
+            button.demo-button.loading-element.right svg path, button.demo-button.loading-element.left svg path {
+                stroke-width: 6;
+            }
+            button.demo-button.loading-element.top svg path, button.demo-button.loading-element.bottom svg path {
+                stroke-width: 3;
+            }
+            .loading-element.open-loading.circular-loading.bottom, .loading-element.open-loading.circle-loading.bottom {
+                padding-bottom: 115px;
+            }
+            .loading-element.open-loading.circular-loading.top, .loading-element.open-loading.circle-loading.top {
+                padding-top: 120px;
+                height: auto;
+            }
+            .loading-element.open-loading.top, .loading-element.open-loading.bottom {
+                height: auto;
+            }
+            #demo button.btn:disabled {
+                background-color: #26a69a !important;
+                color: #fff !important;
+            }
+            .footer-copyright {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
     </head>
     <body class="button-demo">
-        <div class="container">
-            <!-- Docs section -->
-            <h1>SVG Loading Animation</h1>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <br><br>
-                    <style type="text/css">.prop-name{color: #008acc;}.prop-val{background-color: #b1dbef;border-radius: 4px;padding: 0 2px;}</style>
-                    <div style="background: #fff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;">
-                    <pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;button</span> <span style="color: #5ba3c5">class=&quot;demo-button</span><span class="prop-name">&quot;</span>
-                    <span class="prop-name">data-progress=&quot;</span><span class="prop-val">Sending</span><span class="prop-name">&quot;</span>
-                    <span class="prop-name">data-success=&quot;</span><span class="prop-val">Done!</span><span class="prop-name">&quot;</span>
-                    <span class="prop-name">data-fail=&quot;</span><span class="prop-val">Error!</span><span class="prop-name">&quot;</span>
-                    <span class="prop-name">data-reset=&quot;</span><span class="prop-val">Send</span><span class="prop-name">&quot;</span><span style="color: #007700">&gt;</span>
-                    Send<span style="color: #007700">
-                &lt;/button&gt;</span></pre>
-                    </div>
-                    <br>
-                </div>
+        <nav class="light-blue lighten-1" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">SVG Loading</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="https://github.com/jagjitgill/svg-loading#readme">GitHub Docs</a></li>
+                </ul>
+
+                <ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
+                    <li><a href="https://github.com/jagjitgill/svg-loading#readme">GitHub Docs</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
-            <hr>
-            <!-- Circular loading -->
+        </nav>
+        <div class="container" id="demo">
             <div class="row">
-                <div class="col-md-3">
-                    <button class="demo-button demo-circular1" 
-                        data-progress="Authenticating" 
-                        data-success="Success" 
+                <div class="col s12 m12 l12">
+                    <h1 class="header orange-text">SVG loading animation demo</h1>
+                </div>
+                <hr>
+                <br>
+                <div class="col s12 m12 l12 demo-row center-align">
+                    <p>
+                        <em>Click the buttons to start the animation and stop by clicking "Stop"<br>
+                        You can also change the position with radio buttons.</em>
+                    </p>
+                    <br>
+                    <button href="#" class="btn btn-large demo-button circular-demo waves-effect waves-light"
+                        data-progress="Sending"
+                        data-success="Done!"
                         data-fail="Error!"
-                        data-reset="Sign in"
-                        >Sign in</button>
-                    <br><br>
-                    <button class="demo-button demo-circular2" 
-                        data-progress="Sending" 
-                        data-success="Done!" 
+                        data-reset="Try again">
+                        Circular
+                    </button>
+                    <button href="#" class="btn btn-large demo-button circle-demo waves-effect waves-light"
+                        data-progress="Processing"
+                        data-success="Success!"
+                        data-fail="Failed"
+                        data-reset="Try again">
+                        Circle
+                    </button>
+                    <button href="#" class="btn btn-large demo-button infinity-demo waves-effect waves-light"
+                        data-progress="Sending"
+                        data-success="Done!"
                         data-fail="Error!"
-                        data-reset="Send"
-                        >Circular fail</button>
-                    <br><br>
-                    <button class="demo-button demo-circular3">Circular Silent</button>
+                        data-reset="Try again">
+                        Infinity
+                    </button>
+                    <button href="#" class="btn btn-large demo-button pulse-demo waves-effect waves-light"
+                        data-progress="Processing"
+                        data-success="Success!"
+                        data-fail="Failed"
+                        data-reset="Try again">
+                        Pulse
+                    </button>
+                    <button href="#" class="btn btn-large demo-button red stop-all-1 lighten-2 waves-effect waves-light">Stop</button>
                 </div>
-                <!-- Docs section -->
-                <div class="col-md-9">
-                    <h4>Circular Loading</h4>
-                    <code>
-                        var circularLoading = initializeLoading('.demo-button');<br>
-                        var circularLoading = initializeLoading('.demo-button', { type: 'circular', position: 'bottom' });<br><br>
-                        circularLoading.triggerSuccess();<br>
-                        circularLoading.triggerFail();<br>
-                        circularLoading.triggerSilentSuccess();
-                    </code>
-                    <br><br><br>
-                    <span><em>refresh to reset</em></span>
-                </div>
+                <!-- <div class="col s12 m12 l12 demo-row center-align">
+                    <div class="demo-pulse-div">Pulse loading</div>
+                </div> -->
             </div>
-            <hr>
-            <!-- Circle loading -->
+            <br><br>
             <div class="row">
-                <div class="col-md-3">
-                    <br>
-                    <button class="demo-circle1">Circle succeed</button><br><br>
-                    <button class="demo-circle2">Circle fail</button>
+                <div class="col s12 m6 l6 demo-row center-align">
+                    <strong>Animation Position</strong><br>
+                    <p>
+                        <input name="position" type="radio" value="left" id="position-left" />
+                        <label for="position-left">Left</label>
+
+                        <input name="position" type="radio" value="right" id="position-right" checked />
+                        <label for="position-right">Right</label>
+
+                        <input name="position" type="radio" value="top" id="position-top" />
+                        <label for="position-top">Top</label>
+
+                        <input name="position" type="radio" value="bottom" id="position-bottom" />
+                        <label for="position-bottom">Bottom</label>
+                    </p>
                 </div>
-                <!-- Docs section -->
-                <div class="col-md-9">
-                    <h4>Circle Loading</h4>
-                    <code>
-                        var circleLoading = initializeLoading('.demo-button', {type: 'circle'});<br><br>
-                        circleLoading.triggerSuccess('All Done!');<br>
-                        circleLoading.triggerFail('Action Failed :(');<br>
-                    </code>
-                </div>
-            </div>
-            <hr>
-            <!-- Infinity loading -->
-            <div class="row">
-                <div class="col-md-3">
-                    <br>
-                    <button class="demo-infinity1">Infinity succeed</button><br><br>
-                    <button class="demo-infinity2">Infinity fail</button>
-                </div>
-                <!-- Docs section -->
-                <div class="col-md-9">
-                    <h4>Infinity Loading</h4>
-                    <code>
-                        var infinityLoading = initializeLoading('.demo-button', {type: 'infinity'});<br><br>
-                        infinityLoading.triggerSuccess();<br>
-                        infinityLoading.triggerFail();<br>
-                    </code>
+            <!-- Final action, success/fail -->
+                <div class="col s12 m6 l6 demo-row center-align">
+                    <strong>Stop with</strong><br>
+                    <p>
+                        <input name="stopAction" type="radio" value="success" id="stop-action-left" checked />
+                        <label for="stop-action-left">Success</label>
+
+                        <input name="stopAction" type="radio" value="fail" id="stop-action-right" />
+                        <label for="stop-action-right">Fail</label>
+
+                        <input name="stopAction" type="radio" value="silent" id="stop-action-top" />
+                        <label for="stop-action-top">Silently</label>
+                    </p>
                 </div>
             </div>
             <br><br>
-            <!-- Docs -->
             <div class="row">
-                <div class="col-xs-12">
-                    <p class="demo-inline-p"></p>
-                    <div class="demo-div"></div>
-                    <div class="demo-pulse-div">Maano</div>
-                    <!-- <p>
-                        <b>Tested in: </b><u>IE 10</u>, <u>IE 11</u>, <u>Edge 38</u>, FireFox 52, Chrome 57 - (Windows)<br />
-                    </p> -->
-                    <h3>Implementation:</h3>
-                    <ol class="my-ol">
-                        <li>Add the CSS and JS files.</li>
-                        <li>Add svg animation tempates in the html file as required (Circular, circle or/and infinity).</li>
-                        <li>
-                            Build loading element:<br>
-                            <code>var circularLoading = initializeLoading('.button-class');</code>
-                        </li>
-                        <li>
-                            Success/Fail <br>
-                            <code>circularLoading.triggerFail();  OR  circularLoading.triggerSuccess();</code><br>
-                            The default state messages is null. You can pass custom values via 'data' attributes. 
-                            The success/fail message can also be passed directly in the call.<br>
-                            <code> &rarr; loading1.triggerSuccess('All Done!');</code>
-                            <code> &rarr; loading1.triggerFail('Action Failed :(');</code>
-                        </li>
-                        <li>
-                            Available custom options.<br>
-                            <code>{ type: '', position: '', scale: '' }</code><br>
-                            type &rarr; circular, circle, infinity<br>
-                            position &rarr; top, bottom, left, right and inline <em>(inline for p, div, span etc.)</em><br>
-                            scale &rarr; x1-5, x2, x2-5 ... x4 (For inline only)<br>
-                            
-                            <br>
-                            <code>ex: var loading = initializeLoading('.my-class', { type: 'circular', position: 'inline', scale: 'x1' });</code>
-
-                        </li>
-                    </ol>
-                    <br/>
-                    
+                <p class="center">
+                    <a class="orange-text" href="https://github.com/jagjitgill/svg-loading" target="_blank"><u>View on GitHub</u></a>
+                </p>
+            </div>
+        </div>
+        <footer class="page-footer white">
+            <div class="container">
+                <div class="row">
+                    <div class="col l8 m8 s12 white-text footer-container-1 hide-on-med-and-down hide-on-med-and-up">
+                        <div itemscope="" itemtype="http://data-vocabulary.org/Person">
+                            <strong>Bio:</strong>&nbsp; My name is <span itemprop="name">Jagjit Gill</span>.<br>
+                            I work as a <span itemprop="title">Web Developer</span> in
+                            <span itemprop="address" itemscope="" itemtype="http://data-vocabulary.org/Address">
+                                <span itemprop="locality">Waterloo</span>, 
+                                <span itemprop="region">ON</span> 
+                                <span itemprop="country-name">Canada</span>.
+                            </span><br>
+                            Website: <a class="white-text" href="http://www.jagjitgill.ca" itemprop="url">www.jagjitgill.ca</a>
+                            <a href="/static/img/Jagjit-Gill-3.jpg" alt="Jagjit Gill" itemprop="photo"></a>
+                            <a href="/static/img/Jagjit-Gill.jpg" alt="Jagjit Singh Gill" itemprop="photo"></a>
+                            <a rel="author" href="/static/img/Jagjit-Gill-2.jpg" alt="Jagjit Gill" itemprop="photo"></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- END Docs -->
-        </div>
-        <script type="text/template" id="circular-loading">
-            <svg width="120px" height="120px">
-                <path class="outer-path color" d="M 60 60 m 0 -50 a 50 50 0 1 1 0 100 a 50 50 0 1 1 0 -100"></path>
-                <path class="inner-path color2" d="M 60 60 m 0 -30 a 30 30 0 1 1 0 60 a 30 30 0 1 1 0 -60"></path>
-                <path class="success-path color" d="M 60 10 A 50 50 0 0 1 91 21 L 75 45 L 55 75 L 45 65"></path>
-                <path class="error-path color" d="M 60 10 A 50 50 0 0 1 95 25 L 45 75"></path>
-                <path class="error-path2 color" d="M 60 30 A 30 30 0 0 1 81 81 L 45 45"></path>
-            </svg>
-        </script>
-        <script type="text/template" id="circle-loading">
-            <svg width="120px" height="120px">
-                <circle r="50" cx="60" cy="60" fill="none" class="color2"></circle>
-                <circle r="30" cx="60" cy="60" fill="none" class="color2"></circle>
-                <path class="outer-path color" d="M 60 60 m 0 -50 a 50 50 0 1 1 0 100 a 50 50 0 1 1 0 -100"></path>
-                <path class="inner-path color" d="M 60 60 m 0 -30 a 30 30 0 1 1 0 60 a 30 30 0 1 1 0 -60"></path>
-                <path class="success-path color" d="M 60 10 A 50 50 0 0 0 16 36  L 45 65 L 55 75 L 75 45"></path>
-                <path class="error-path color" d="M 60 10 A 50 50 0 0 0 25 95 L 75 45"></path>
-                <path class="error-path2 color" d="M 60 30 A 30 30 0 0 1 81 81 L 45 45"></path>
-            </svg>
-        </script>
-        <script type="text/template" id="infinity-loading">
-            <svg width="120px" height="60px">
-                <path class="infinity-path color" d="M 30 10 a 20 20 0 1 0 0 40 c 20 0 40 -40 60 -40 a 20 20 0 0 1 0 40 c -20 0 -40 -40 -60 -40"></path>
-                <path class="success-path color" d="M 30 10 C 15 10 35 25 45 35 L 55 45 L 75 15"></path>
-                <path class="error-path color" d="M 30 10 a 20 20 0 1 0 0 40 Q 40 50 45 45 L 75 15"></path>
-                <path class="error-path2 color" d="M 30 10 Q 40 10 45 15 L 75 45"></path>
-            </svg>
-        </script>
-        <script type="text/template" id="pulse-loading">
-            <svg width="120px" height="60px" id="pulse">
-                <path class="pulse-path color" d="M0.75,18.268l28.763,0l4.818,-7.311l3.682,13.764l9.716,-23.971l8.64,44.311l5.026,-32.944l6.067,13.589l3.723,-8.219l24.341,0" />
-                <path class="success-path color" d="M 30 10 C 15 10 35 25 45 35 L 55 45 L 75 15"></path>
-                <path class="error-path color" d="M 30 10 a 20 20 0 1 0 0 40 Q 40 50 45 45 L 75 15"></path>
-                <path class="error-path2 color" d="M 30 10 Q 40 10 45 15 L 75 45"></path>
-            </svg>
-        </script>
+            <div class="footer-copyright white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 center grey-text">
+                            Demo page made by <a rel="author" href="https://www.google.com/+JagjitGill007" target="_blank" title="Google+" class="grey-text">Jagjit Gill</a> using Material Design.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
         <script type="text/javascript">
-            (function(){
-                var circular1 = initializeLoading('.demo-circular1');
-                var circular2 = initializeLoading('.demo-circular2', { type: 'circular', position: 'bottom' });
-                var circular3 = initializeLoading('.demo-circular3', { type: 'circular' });
+            (function($){
+                $(function(){
+                    $('.button-collapse').sideNav();
+                    var loadingPosition = 'right';
+                    var loadingStop = 'success';
+                    var circularRight, circleRight, infinityRight, divPulseLoading;
+                    initLoading();
+                    $("input[type=radio][name=position]").change(function(e){
+                        loadingPosition = this.value;
+                        resetLoading();
+                    });
+                    $("input[type=radio][name=stopAction]").change(function(e){
+                        loadingStop = this.value;
+                    });
 
-                var circle1 = initializeLoading('.demo-circle1', { type: 'circle' });
-                var circle2 = initializeLoading('.demo-circle2', { type: 'circle' });
-            
-                var infinity1 = initializeLoading('.demo-infinity1', { type: 'infinity' });
-                var infinity2 = initializeLoading('.demo-infinity2', { type: 'infinity' });
+                    function initLoading(){
+                        circularRight = initializeLoading('.circular-demo', { position: loadingPosition });
+                        circleRight = initializeLoading('.circle-demo', {type: "circle", position: loadingPosition} );
+                        infinityRight = initializeLoading('.infinity-demo', {type: "infinity", position: loadingPosition} );
+                        divPulseLoading = initializeLoading('.pulse-demo', { type: "pulse", scale: "x3" } );
 
-                var inlineCircular = initializeLoading('.demo-inline-p', { type: 'circular', position: 'inline', scale: 'x1' });
-                var divLoading = initializeLoading('.demo-div');
-                var divPulseLoading = initializeLoading('.demo-pulse-div', { type: "pulse", scale: "x2" } );
-            
-                setTimeout(function(){
 
-                    circular1.triggerSuccess();
-                    circular2.triggerFail();
-                    circular3.triggerSilentSuccess();
-            
-                    circle1.triggerSuccess('All Done!');
-                    circle2.triggerFail('Action Failed :(');
-            
-                    infinity1.triggerSuccess();
-                    infinity2.triggerFail();
+                        $(".stop-all-1").click(function(e){
+                            e.preventDefault();
+                            if (loadingStop == 'success') {
+                                if(circularRight.lstate != 'default'){ circularRight.triggerSuccess(); }
+                                if(circleRight.lstate != 'default'){ circleRight.triggerSuccess(); }
+                                if(infinityRight.lstate != 'default'){ infinityRight.triggerSuccess(); }
+                                if(divPulseLoading.lstate != 'default'){ divPulseLoading.triggerSuccess(); }
+                            }else if (loadingStop == 'fail') {
+                                if(circularRight.lstate != 'default'){ circularRight.triggerFail(); }
+                                if(circleRight.lstate != 'default'){ circleRight.triggerFail(); }
+                                if(infinityRight.lstate != 'default'){ infinityRight.triggerFail(); }
+                                if(divPulseLoading.lstate != 'default'){ divPulseLoading.triggerFail(); }
+                            }else{
+                                if(circularRight.lstate != 'default'){ circularRight.triggerSilentSuccess(); }
+                                if(circleRight.lstate != 'default'){ circleRight.triggerSilentSuccess(); }
+                                if(infinityRight.lstate != 'default'){ infinityRight.triggerSilentSuccess(); }
+                                if(divPulseLoading.lstate != 'default'){ divPulseLoading.triggerSilentSuccess(); }
+                            }
+                        });
+                    }
 
-                    // divPulseLoading.triggerSuccess();
-
-                }, 2500);
-            })();
+                    function resetLoading(){
+                       
+                        var btns = $('.demo-button');
+                        var allPos = ['right', 'left', 'top', 'bottom', 'inline'];
+                        btns.each(function(i, b){
+                            allPos.forEach(function(p){
+                                if(p !== loadingPosition){
+                                    removeClass(b, p);
+                                }
+                            });
+                            addClass(b, loadingPosition);
+                        });
+                    }
+                }); // end of document ready
+            })(jQuery); // end of jQuery name space
         </script>
     </body>
 </html>

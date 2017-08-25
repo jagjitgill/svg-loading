@@ -30,6 +30,7 @@ if ('classList' in document.documentElement) {
         elem.className = elem.className.replace(classReg(c), ' ');
     };
 }
+
 function toggleClass(elem, c) {
     var fn = hasClass(elem, c) ? removeClass : addClass;
     fn(elem, c);
@@ -48,6 +49,7 @@ LoadingButton.prototype = {
     init: function() {
         this.infinite = true;
         this.succeed = false;
+        this.lstate = 'default';
         this.initDOM();
         this.initSegments();
         this.initEvents();
@@ -58,7 +60,7 @@ LoadingButton.prototype = {
         this.el.innerHTML = '<span>' + this.el.innerHTML + '</span>';
         this.span = this.el.querySelector('span');
         var div = document.createElement('div');
-        div.innerHTML = document.querySelector(this.options.svg).innerHTML;
+        div.innerHTML = getAnimationMarkup(this.options.svg);
         this.svg = div.querySelector('svg');
         this.el.appendChild(this.svg);
     },
@@ -97,6 +99,7 @@ LoadingButton.prototype = {
 
     startAnimation: function() {
         var self = this;
+        this.lstate = 'loading';
         this.defaultText = self.span.innerHTML;
         if (self.el.getAttribute("data-progress")) {
             self.buttonText = self.el.getAttribute("data-progress");
@@ -191,6 +194,7 @@ LoadingButton.prototype = {
 
         self.successSegment.draw('100% - 50', '100%', 0.4, {
             callback: function() {
+                self.lstate = 'success';
                 if (typeof(self.successText) !== 'undefined') {
                     self.span.innerHTML = self.successText;
                 }
@@ -215,6 +219,7 @@ LoadingButton.prototype = {
         self.errorSegment.draw('100% - 42.5', '100%', 0.4);
         self.errorSegment2.draw('100% - 42.5', '100%', 0.4, {
             callback: function() {
+                self.lstate = 'failed';
                 if (typeof(self.errorText) !== 'undefined') {
                     self.span.innerHTML = self.errorText;
                 }
@@ -230,6 +235,7 @@ LoadingButton.prototype = {
     reset: function() {
         this.el.removeAttribute('disabled');
         removeClass(this.el, 'open-loading');
+        this.lstate = 'default';
         if (this.defaultText) {
             this.resetText = this.defaultText;
         }
@@ -266,7 +272,7 @@ LoadingButton.prototype = {
 function circularLoading(cssSelector) {
     var button = document.querySelector(cssSelector),
         options = {
-            svg: '#circular-loading',
+            svg: 'circular',
             paths: [{
                 selector: '.outer-path',
                 animation: outerAnimation
@@ -318,7 +324,7 @@ function circularLoading(cssSelector) {
 function circleLoading(cssSelector) {
     var button = document.querySelector(cssSelector),
         options = {
-            svg: '#circle-loading',
+            svg: 'circle',
             paths: [{
                 selector: '.outer-path',
                 animation: outerAnimation
@@ -370,7 +376,7 @@ function circleLoading(cssSelector) {
 function infinityLoading(cssSelector) {
     var button = document.querySelector(cssSelector),
         options = {
-            svg: '#infinity-loading',
+            svg: 'infinity',
             paths: [{
                 selector: '.infinity-path',
                 animation: infinityAnimation
@@ -435,32 +441,35 @@ function pulseLoading(cssSelector) {
     return loading;
 }
 /** loading animation calls **/
-function initializeLoading(cssSelector, options){
-    if(!cssSelector) { 
-        return 'Invalid! No cssSelector passed.'; 
-    }else{
+function initializeLoading(cssSelector, options) {
+    if (!cssSelector || document.querySelector(cssSelector) == null) {
+        console.log('Invalid! No cssSelector passed.');
+        return 'Invalid! No cssSelector passed.';
+    } else {
         // Check/process options and clal the loading function.
         var loading = null;
         var defaultPosition = 'right';
         var ele = document.querySelector(cssSelector);
-        if(ele.tagName !== "BUTTON" && ele.tagName !== "A") {
+        if (ele.tagName !== "BUTTON" && ele.tagName !== "A") {
             defaultPosition = "inline";
         }
 
-        if (typeof options == 'undefined') { options= {}; }
-        options= {
+        if (typeof options == 'undefined') {
+            options = {};
+        }
+        options = {
             position: options.position || defaultPosition,
             type: options.type || 'circular',
             scale: options.scale || null
         };
-        
+
         addClass(ele, options.position);
         // Only scale for inline display, animation in buttons can't be scale.
-        if(options.scale && options.position == 'inline'){
-            addClass(ele, options.scale); 
+        if (options.scale && options.position == 'inline') {
+            addClass(ele, options.scale);
         }
 
-        switch(options.type.toLowerCase()) {
+        switch (options.type.toLowerCase()) {
             case 'circular':
                 loading = circularLoading(cssSelector);
                 break;
@@ -477,4 +486,19 @@ function initializeLoading(cssSelector, options){
         }
         return loading;
     }
+}
+/** Loading Animations SVG Markup **/
+function getAnimationMarkup(type) {
+    var loadingType = type || 'circular';
+    var svgMarkup = [];
+    svgMarkup['circular'] = '<svg width="120px" height="120px"> <path class="outer-path color" d="M 60 60 m 0 -50 a 50 50 0 1 1 0 100 a 50 50 0 1 1 0 -100"></path> <path class="inner-path color2" d="M 60 60 m 0 -30 a 30 30 0 1 1 0 60 a 30 30 0 1 1 0 -60"></path> <path class="success-path color" d="M 60 10 A 50 50 0 0 1 91 21 L 75 45 L 55 75 L 45 65"></path> <path class="error-path color" d="M 60 10 A 50 50 0 0 1 95 25 L 45 75"></path> <path class="error-path2 color" d="M 60 30 A 30 30 0 0 1 81 81 L 45 45"></path> </svg>';
+    svgMarkup['circle'] = '<svg width="120px" height="120px"> <circle r="50" cx="60" cy="60" fill="none" class="color2"></circle> <circle r="30" cx="60" cy="60" fill="none" class="color2"></circle> <path class="outer-path color" d="M 60 60 m 0 -50 a 50 50 0 1 1 0 100 a 50 50 0 1 1 0 -100"></path> <path class="inner-path color" d="M 60 60 m 0 -30 a 30 30 0 1 1 0 60 a 30 30 0 1 1 0 -60"></path> <path class="success-path color" d="M 60 10 A 50 50 0 0 0 16 36  L 45 65 L 55 75 L 75 45"></path> <path class="error-path color" d="M 60 10 A 50 50 0 0 0 25 95 L 75 45"></path> <path class="error-path2 color" d="M 60 30 A 30 30 0 0 1 81 81 L 45 45"></path> </svg>';
+    svgMarkup['infinity'] = '<svg width="120px" height="60px"><path class="infinity-path color" d="M 30 10 a 20 20 0 1 0 0 40 c 20 0 40 -40 60 -40 a 20 20 0 0 1 0 40 c -20 0 -40 -40 -60 -40"></path><path class="success-path color" d="M 30 10 C 15 10 35 25 45 35 L 55 45 L 75 15"></path><path class="error-path color" d="M 30 10 a 20 20 0 1 0 0 40 Q 40 50 45 45 L 75 15"></path><path class="error-path2 color" d="M 30 10 Q 40 10 45 15 L 75 45"></path></svg>';
+
+    if (svgMarkup[loadingType]) {
+        return svgMarkup[loadingType];
+    } else {
+        return svgMarkup['circular'];
+    }
+
 }

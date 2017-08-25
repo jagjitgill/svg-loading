@@ -1,27 +1,38 @@
 # SVG Loading Animation
 SVG based customizable loading animation.
+[View demo](http://jagjitgill.ca/code/svg-loading/)
 
-
-## Usage
-### HTML
-No special markup is required to add the animation. 
-```html
-<button class="my-class">Submit</button>
-<a class="my-class">Submit</a>
+## Install
+Download zip from the [GitHub repo][svg-loading] or install via bower, a [client-side code package manager][bower].
+```bash
+bower install svg-loading
+# bower install https://github.com/jagjitgill/svg-loading.git#master
 ```
+
+Include the required css and the js files:
+```html
+<link href="bower_components/svg-loading/dist/svg-loading.css" rel="stylesheet"></link>
+
+<script src="bower_components/svg-loading/dist/segment.min.js"></script>
+<script src="bower_components/svg-loading/dist/svg-loading.min.js"></script>
+```
+
 ### JS
 By default the `<button>` and `<a>` will start the animation on click. All the other containers (`<p>`, `<div>` etc.) will start the animation upon initialization.
+Initialize the animation:
 ```js
-// Initialize
-var circularLoading = initializeLoading('.my-class');
+$(function(){
+    // Initialize
+    var circularLoading = initializeLoading('.my-class');
 
-// Stop animation
-circularLoading.triggerSuccess();           // Stop with tick mark
-circularLoading.triggerFail();              // Stop with "x"
-circularLoading.triggerSilentSuccess();     // Fade away
+    // Stop animation
+    circularLoading.triggerSuccess();           // Stop with tick mark
+    circularLoading.triggerFail();              // Stop with "x"
+    circularLoading.triggerSilentSuccess();     // Fade away
+});
 ```
 ### Options
-**Status text**
+#### Status text
 1) Via `data` attributes.
 
 ```html
@@ -40,8 +51,7 @@ circularLoading.triggerFail('Action failed');
 ```
 
 **Position**
-The animation can be added on `left`, `right`, `top` or `bottom` of the element. The default value is 'right'. Specific position settings can be passed during initialization.
-(Use `inline` for paragraphs and divs)
+The animation can be added on `left`, `right`, `top` or `bottom` of the element. The default value is 'right'. Specific position settings can be passed during initialization. (Use `inline` for paragraphs and divs)
 
 ```javascript
 var loading = initializeLoading('.my-class', { position: 'bottom' });
@@ -66,5 +76,7 @@ This library is made using [segment](https://lmgonzalves.github.io/segment/) and
 Found a bug? or an enhancement idea?  Let's _git_ on it.
 Inspired by [lmgonzalves](https://x-team.com/blog/creating-loading-buttons-svg-segment/).
 
-![Loading gif](/demo-loading.gif?raw=true)
-![Loading sample](/demo-sample.png?raw=true)
+![Loading gif](/demo-svg-loading.gif?raw=true)
+
+[svg-loading]: https://github.com/jagjitgill/svg-loading
+[bower]: http://bower.io/

@@ -1,0 +1,27 @@
+{
+  "name": "svg-loading",
+  "homepage": "https://github.com/jagjitgill/svg-loading",
+  "description": "SVG loading animation js library",
+  "private": false,
+  "license": "MIT",
+  "authors": [
+    "Jagjit Gill <gill.jagjit143@gmail.com>"
+  ],
+  "main": [
+    "dist/svg-loading.css",
+    "dist/segment.min.js",
+    "dist/svg-loading.min.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+   "keywords": [
+    "svg",
+    "loading",
+    "animation"
+  ]
+}
